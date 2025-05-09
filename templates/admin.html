@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Admin Panel</h2>
+  <ul class="list-group">
+    <li class="list-group-item"><a href="{{ url_for('admin_teams') }}">Manage Teams</a></li>
+    <li class="list-group-item"><a href="{{ url_for('admin_players') }}">Manage Players</a></li>
+    <li class="list-group-item"><a href="{{ url_for('admin_matches') }}">Manage Matches</a></li>
+    <li class="list-group-item"><a href="{{ url_for('admin_groups') }}">Manage Groups</a></li>
+  </ul>
+</div>
+{% endblock %}

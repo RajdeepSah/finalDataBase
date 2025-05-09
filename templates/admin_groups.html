@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Manage Groups{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2>
+    Group Teams
+    <a href="{{ url_for('admin_groups_add') }}" class="btn btn-sm btn-success">+ Add</a>
+  </h2>
+  {% for group, items in groups.items() %}
+    <h4>Group {{ group }}</h4>
+    <table class="table mb-4">
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>Played</th>
+          <th>Qualified</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for e in items %}
+        <tr>
+          <td>{{ e.team_name }}</td>
+          <td>{{ e.matches_played }}</td>
+          <td>{{ 'Yes' if e.qualified else 'No' }}</td>
+          <td>
+            <a href="{{ url_for('admin_groups_edit', group_id=e.group_id, team_id=e.team_id) }}"
+               class="btn btn-sm btn-primary">Edit</a>
+            <a href="{{ url_for('admin_groups_delete', group_id=e.group_id, team_id=e.team_id) }}"
+               class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endfor %}
+</div>
+{% endblock %}

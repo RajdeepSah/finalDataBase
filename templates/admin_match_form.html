@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Match{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:700px">
+  <h2>{{ action }} Match</h2>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Match Date &amp; Time</label>
+      <input name="match_date" type="datetime-local" class="form-control"
+             value="{{ match.match_date|default('', true) }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Venue</label>
+      <select name="venue_id" class="form-select">
+        {% for v in venues %}
+          <option value="{{ v.venue_id }}"
+            {% if match and match.venue_id==v.venue_id %}selected{% endif %}>
+            {{ v.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Stage</label>
+      <select name="stage_id" class="form-select">
+        {% for s in stages %}
+          <option value="{{ s.stage_id }}"
+            {% if match and match.stage_id==s.stage_id %}selected{% endif %}>
+            {{ s.stage_info }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <hr>
+    <h5>Team 1</h5>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Team</label>
+        <select name="team1_id" class="form-select">
+          {% for t in teams %}
+            <option value="{{ t.team_id }}"
+              {% if match and match.team1_id==t.team_id %}selected{% endif %}>
+              {{ t.name }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label class="form-label">Goals</label>
+        <input name="goals1" type="number" class="form-control"
+               value="{{ match.goals1 if match else '' }}">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label class="form-label">Result</label>
+        <select name="result1" class="form-select">
+          <option value="Win">Win</option>
+          <option value="Draw">Draw</option>
+          <option value="Loss">Loss</option>
+        </select>
+      </div>
+    </div>
+    <h5>Team 2</h5>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Team</label>
+        <select name="team2_id" class="form-select">
+          {% for t in teams %}
+            <option value="{{ t.team_id }}"
+              {% if match and match.team2_id==t.team_id %}selected{% endif %}>
+              {{ t.name }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label class="form-label">Goals</label>
+        <input name="goals2" type="number" class="form-control"
+               value="{{ match.goals2 if match else '' }}">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label class="form-label">Result</label>
+        <select name="result2" class="form-select">
+          <option value="Win">Win</option>
+          <option value="Draw">Draw</option>
+          <option value="Loss">Loss</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary">{{ action }}</button>
+    <a href="{{ url_for('admin_matches') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

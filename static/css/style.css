@@ -1,0 +1,33 @@
+body {
+    padding-top: 70px;
+  }
+  .hero {
+    position: relative;
+    background: url("../images/background.jpg") center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 150px 0;
+  }
+  .hero .overlay {
+    position: absolute; top:0;left:0;right:0;bottom:0;
+    background: rgba(0,0,0,0.6);
+  }
+  .hero .content {
+    position: relative; z-index: 2;
+  }
+  .section-grey {
+    background-color: #6c757d;
+    color: white;
+    padding: 60px 0;
+  }
+  .section-grey img {
+    max-width: 100%;
+    border-radius: .5rem;
+  }
+  footer {
+    background-color: #212529;
+    color: #ccc;
+    padding: 20px 0;
+    text-align: center;
+  }
+  

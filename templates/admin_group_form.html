@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Group Entry{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:500px">
+  <h2>{{ action }} Group Team</h2>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Group</label>
+      <select name="group_id" class="form-select">
+        {% for g in groups %}
+          <option value="{{ g.group_id }}"
+            {% if entry and entry.group_id==g.group_id %}selected{% endif %}>
+            {{ g.group_name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Team</label>
+      <select name="team_id" class="form-select">
+        {% for t in teams %}
+          <option value="{{ t.team_id }}"
+            {% if entry and entry.team_id==t.team_id %}selected{% endif %}>
+            {{ t.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Matches Played</label>
+      <input name="matches_played" type="number" class="form-control"
+             value="{{ entry.matches_played if entry else '0' }}">
+    </div>
+    <div class="form-check mb-3">
+      <input name="qualified" type="checkbox" class="form-check-input"
+             {% if entry and entry.qualified %}checked{% endif %}>
+      <label class="form-check-label">Qualified</label>
+    </div>
+    <button class="btn btn-primary">{{ action }}</button>
+    <a href="{{ url_for('admin_groups') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

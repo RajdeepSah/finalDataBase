@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Team{% endblock %}
+{% block content %}
+<div class="container py-5" style="max-width:500px">
+  <h2>{{ action }} Team</h2>
+  <form method="post">
+    <div class="mb-3">
+      <label>Name</label>
+      <input name="name" class="form-control" value="{{ team.name if team else '' }}">
+    </div>
+    <div class="mb-3">
+      <label>Founded Year</label>
+      <input name="founded_year" type="number"
+             class="form-control"
+             value="{{ team.founded_year if team else '' }}">
+    </div>
+    <div class="mb-3">
+      <label>Country</label>
+      <select name="country_id" class="form-select">
+        {% for c in countries %}
+          <option value="{{ c.country_id }}"
+            {% if team and team.country_id==c.country_id %}selected{% endif %}>
+            {{ c.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <button class="btn btn-primary">{{ action }}</button>
+    <a href="{{ url_for('admin_teams') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

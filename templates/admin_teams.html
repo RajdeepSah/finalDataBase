@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Manage Teams{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2>
+    Teams
+    <a href="{{ url_for('admin_teams_add') }}" class="btn btn-sm btn-success">+ Add</a>
+  </h2>
+  <table class="table">
+    <tr><th>Name</th><th>Founded</th><th>Actions</th></tr>
+    {% for t in teams %}
+    <tr>
+      <td>{{ t.name }}</td>
+      <td>{{ t.founded_year }}</td>
+      <td>
+        <a href="{{ url_for('admin_teams_edit', id=t.team_id) }}" class="btn btn-sm btn-primary">Edit</a>
+        <a href="{{ url_for('admin_teams_delete', id=t.team_id) }}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

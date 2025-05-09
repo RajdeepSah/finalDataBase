@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Home - Champions League{% endblock %}
+{% block content %}
+<div class="hero">
+  <div class="overlay"></div>
+  <div class="content container">
+    <h1 class="display-3">UEFA Champions League</h1>
+    <p class="lead">Experience the thrill of Europe’s premier club football tournament</p>
+    <a href="{{ url_for('matches') }}" class="btn btn-primary btn-lg me-2">Latest Matches</a>
+    <a href="{{ url_for('groups') }}"  class="btn btn-outline-light btn-lg">Explore Groups</a>
+  </div>
+</div>
+
+<div class="section-grey">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="{{ url_for('static', filename='images/trophy.jpg') }}" alt="Trophy">
+      </div>
+      <div class="col-md-6">
+        <h2>About the Trophy</h2>
+        <p>Since 1956, only the greatest teams have lifted this iconic cup, symbolizing excellence on the world’s biggest stage.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

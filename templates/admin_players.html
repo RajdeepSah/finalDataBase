@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Manage Players{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2>
+    Players
+    <a href="{{ url_for('admin_players_add') }}" class="btn btn-sm btn-success">+ Add</a>
+  </h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Jersey</th>
+        <th>Team</th>
+        <th>Country</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for p in players %}
+      <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.position }}</td>
+        <td>{{ p.jersey_number }}</td>
+        <td>{{ p.team_name }}</td>
+        <td>{{ p.country_name }}</td>
+        <td>
+          <a href="{{ url_for('admin_players_edit', id=p.player_id) }}" class="btn btn-sm btn-primary">Edit</a>
+          <a href="{{ url_for('admin_players_delete', id=p.player_id) }}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
